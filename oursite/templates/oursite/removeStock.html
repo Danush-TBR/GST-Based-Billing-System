@@ -18,19 +18,22 @@
     {%else%}
       <a href="{%url 'oursite:login' %}"><li>Login</li></a>
       <a href="{%url 'oursite:register' %}"><li>Register</li></a>
-      <a href="/admin">admin</a>
     {%endif%}
       <a href="#"><li>Help</li></a>
+      <a href="/admin">admin</a>
     </ul>
     {%if user.is_authenticated%}
-      <a href="{% url 'oursite:addStock' %}">Add Stock</a>
-      <a href="{% url 'oursite:removeStock' %}">Remove Stock</a>
-      {%if stock_data%}
-        {{stock_data}}
-      {% endif %}
-    {% endif %}
-    {% if Last_Stock %}
-        Last Added Stock - {{Last_Stock.Product_Name}}  {{Last_Stock.No_of_stocks}}
+      <form method="POST" action="removestock">
+        {% csrf_token %}
+        <label for="stock">Select the Stock to remove</label>
+        <select name="stock" id="stock">
+            {% for stock in Stocks %}
+                <option value="{{stock.id}}">{{stock.Product_Name}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input type="submit" value="remove" style="width: fit-content; background-color: blue;">
+    </form>
     {% endif %}
   </body>
 </html>

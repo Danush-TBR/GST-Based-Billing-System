@@ -62,3 +62,17 @@ def addStock(request):
         return render(request,'oursite/addStock.html',dict())
     else: 
         return render(request,"oursite/register.html",{'error_message':"Login pannala bro neenga!"})
+def removeStock(request):
+    if request.method=='POST':
+        try:
+            Selected_Stock_id=request.POST['stock']
+            #selected_stock=Stock.get(Product_Name="stock")
+        except:
+            Stocks=Stock.objects.all()
+            return render(request,"oursite/removeStock.html",{'Stocks':Stocks,'error':"select a Stock"})
+        else:
+            Stock_To_Be_Removed=Stock.objects.get(id=Selected_Stock_id)
+            Stock_To_Be_Removed.delete()
+            return redirect('/')
+    Stocks=Stock.objects.all()
+    return render(request,"oursite/removeStock.html",{'Stocks':Stocks})
