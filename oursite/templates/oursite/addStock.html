@@ -20,14 +20,13 @@
       <a href="{%url 'oursite:register' %}"><li>Register</li></a>
     {%endif%}
       <a href="#"><li>Help</li></a>
-      <a href="/admin">admin</a>
     </ul>
     {%if user.is_authenticated%}
       <form method="POST" action="addstock">
         {% csrf_token %}
         {{stock_data}}<br>
-        Product Name: <input type="text" name="product_name"><br><br>
-        No Of Stocks: <input type="number" name="no_of_stocks"><br>
+        Product Name: <input type="text" name="product_name"  autocomplete="off"><br><br>
+        No Of Stocks: <input type="number" name="no_of_stocks"  autocomplete="off"><br>
         <input type="submit" value="addstock" style="width: fit-content; background-color: green;">
     </form>
     {% endif %}
