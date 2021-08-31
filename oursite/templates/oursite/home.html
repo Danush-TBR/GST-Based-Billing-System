@@ -23,12 +23,13 @@
       <a href="#"><li>Help</li></a>
     </ul>
     {%if user.is_authenticated%}
-      <a href="{% url 'oursite:addStock' %}">Add Stock</a>
+      <a href="{% url 'oursite:addStock' %}">Add Stock</a><br>
       <a href="{% url 'oursite:removeStock' %}">Remove Stock</a>
       {%if stock_data%}
         {{stock_data}}
       {% endif %}
     {% endif %}
+    <br>
     {% if Last_Stock %}
         Last Added Stock - {{Last_Stock.Product_Name}}  {{Last_Stock.No_of_stocks}}
     {% endif %}
