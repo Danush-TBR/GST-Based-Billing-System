@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </head>
+  <body>  
+    <div class="navbar"></div>
+    <ul class="options">
+      <a href="{%url 'oursite:home' %}"><li>Home</li></a>
+      <a href="{%url 'oursite:login' %}"><li>Login</li></a>
+      <a href="{%url 'oursite:register' %}"><li>Register</li></a>
+      <a href="#"><li>Help</li></a>
+    </ul>
+    {% block content %}
+        <br>
+        <b> 
+            {{error_message}}
+        </b>
+        <form method="POST" action="register">
+            {% csrf_token %}
+            User name<br><input type="text" name="username"><br>
+            First Name<br><input type="text" name="first_name"><br>
+            Last Name<br><input type="text" name="last_name"><br>
+            Password<br><input type="password" name="password"><br>
+            Confirm Password<br><input type="password" name="password1"><br>
+            <input type="submit" name="submit" placeholder="submit"><br>
+        </form>
+        If you already have an account <a href="/login"><strong>login</strong></a> instead.
+    {% endblock %}
+ </body>
+</html>
